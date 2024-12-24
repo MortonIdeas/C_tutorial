@@ -1,21 +1,49 @@
 #include<stdio.h>
 int main()
 {
-    char c;
+    /**/
     int state = 0;
-    while((c=getchar())!=EOF)
+    char c;
+    while((c = getchar())!=EOF)
     {
         switch (state)
         {
         case 0:
-            
-            putchar(c);
+            if(c=='/')
+            {
+                state = 1;
+            }
+            else
+            {
+                putchar(c);
+            }
             break;
         case 1:
-            /* code */
+            if(c=='*')
+            {
+                state = 2;
+            }
+            else
+            {
+                putchar('/');
+                putchar(c);
+                state = 0;
+            }
+            break;
+        case 2:
+            if(c=='*')
+            {
+                state = 3;
+            }
+            break;
+        case 3:
+            if(c=='/')
+            {
+                state = 0;
+            }
             break;
         default:
-            printf("Cos poszlo nie tak");
+            printf("Witam, dzialam");
             break;
         }
     }
